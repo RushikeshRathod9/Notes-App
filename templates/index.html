@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professional Notes App</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="app-header">
+            <div class="header-content">
+                <h1><i class="fas fa-sticky-note"></i> Notes App</h1>
+                <div class="header-actions">
+                    <div class="search-container">
+                        <input type="text" id="searchInput" placeholder="Search notes..." class="search-input">
+                        <i class="fas fa-search search-icon"></i>
+                    </div>
+                    <button id="newNoteBtn" class="btn btn-primary">
+                        <i class="fas fa-plus"></i> New Note
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Sidebar -->
+            <aside class="sidebar">
+                <div class="sidebar-header">
+                    <h3>All Notes</h3>
+                    <span id="notesCount" class="notes-count">0</span>
+                </div>
+                <div id="notesList" class="notes-list">
+                    <!-- Notes will be populated here -->
+                </div>
+            </aside>
+
+            <!-- Note Editor -->
+            <section class="note-editor">
+                <div id="welcomeScreen" class="welcome-screen">
+                    <div class="welcome-content">
+                        <i class="fas fa-sticky-note welcome-icon"></i>
+                        <h2>Welcome to Notes App</h2>
+                        <p>Select a note to edit or create a new one to get started.</p>
+                    </div>
+                </div>
+
+                <div id="editorScreen" class="editor-screen" style="display: none;">
+                    <div class="editor-header">
+                        <input type="text" id="noteTitle" placeholder="Note Title" class="note-title-input">
+                        <div class="editor-actions">
+                            <button id="saveBtn" class="btn btn-success">
+                                <i class="fas fa-save"></i> Save
+                            </button>
+                            <button id="deleteBtn" class="btn btn-danger">
+                                <i class="fas fa-trash"></i> Delete
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="editor-body">
+                        <textarea id="noteContent" placeholder="Start writing your note..." class="note-content-textarea"></textarea>
+                    </div>
+                    
+                    <div class="editor-footer">
+                        <div class="note-meta">
+                            <span id="createdAt" class="meta-info"></span>
+                            <span id="updatedAt" class="meta-info"></span>
+                        </div>
+                        <div class="word-count">
+                            <span id="wordCount">0 words</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Loading Overlay -->
+        <div id="loadingOverlay" class="loading-overlay" style="display: none;">
+            <div class="loading-spinner">
+                <i class="fas fa-spinner fa-spin"></i>
+                <p>Loading...</p>
+            </div>
+        </div>
+
+        <!-- Notification Container -->
+        <div id="notificationContainer" class="notification-container"></div>
+    </div>
+
+    <!-- Note Template (Hidden) -->
+    <template id="noteItemTemplate">
+        <div class="note-item" data-note-id="">
+            <div class="note-item-header">
+                <h4 class="note-item-title"></h4>
+                <span class="note-item-date"></span>
+            </div>
+            <p class="note-item-preview"></p>
+        </div>
+    </template>
+
+    <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>
